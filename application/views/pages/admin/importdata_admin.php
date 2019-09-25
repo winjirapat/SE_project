@@ -3,7 +3,7 @@
 
 <?php
 $web = "KUCPE";
-$topic = "ประกาศ(teacher)";
+$topic = "นำข้อมูลเข้า(admin)";
 
 ?>
 
@@ -45,7 +45,7 @@ $topic = "ประกาศ(teacher)";
 </head>
 
 <!--############################################## Header ###########################################################################-->
-<header style="height: 10vh">
+<header style="height: 12.7vh">
 	<div id='ui_main'></div>
 </header>
 
@@ -54,12 +54,57 @@ $topic = "ประกาศ(teacher)";
 <body>
 	<div class="container-fluid text-center">
 		<div class="row">
-			<div class="col-sm-12 text-center size">
-				<!-- Body -->
-				<div>
-					<p><a href="<?php echo $loginURL;?>"><img src="https://abeon-hosting.com/images/icon-google-png-1.png" width="150"></a></p>
+			<!-- Bar -->
+			<div class="col-sm-2 colora" style="min-height: 87.3vh">
+				<div id='ui_tab'></div>
+			</div>
+			<!-- End Bar -->
+			<div class="col-sm-10 text-left bgimg">
+				<div class="colora" style="padding: 10px">
+					<h2><?php echo $topic ?></h2>
 				</div>
-				<!-- End Body -->
+				<div class="container-fluid well">
+					<!-- Body -->
+					<form class="needs-validation" novalidate>
+						<div class="row">
+							<div class="col-sm-4"></div>
+							<!-- ///////////////////////////////////////////////// -->
+							<div class="col-sm-4" style="text-align: center;">
+								<label>
+									<h1 style="color:black;">ปีการศึกษา</h1> <input type="text">
+								</label>
+								<!-- <label><h2>นำข้อมูลเข้านิสิต</h2> </label> -->
+							</div>
+							<div class="col-sm-4"></div>
+						</div>
+						<!--//////////////////////////////////////////////////-->
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="panel panel-default">
+									<div class="panel-body">
+
+										<div class="col-sm-6">
+											<h2>นำข้อมูลเข้านิสิต</h2>
+											<input type="file" class="colora" name="" value="">
+											<div>
+												<br><br>
+												<button type="submit" name="" value=""><b>upload</b></button>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<h2>นำข้อมูลเข้าอาจารย์</h2>
+											<input type="file" class="colora" name="" value="">
+											<div>
+												<br><br>
+												<button type="submit" name="" value=""><b>upload</b></button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -72,5 +117,3 @@ $topic = "ประกาศ(teacher)";
 <!--############################################## End ###########################################################################-->
 
 </html>
-
-<!-- <img src='<?php echo base_url('src/b.png'); ?>' style = 'width: 250px'> -->
