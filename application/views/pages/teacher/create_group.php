@@ -95,8 +95,9 @@ $topic = "สร้างโปรเจค(teacher)";
                     }
                     ?>
                     <form action="<?= base_url('Controller/register') ?>" method='post'>
-                        <input name="teacher_id" value="<?php echo rand(1,6) ?>" style="display: none"> <!-- SEND DATA 'teacher_id' TO CONTROLLER -->
+                       <!-- <input name="teacher_id" value="<?php echo rand(1,6) ?>" style="display: none"> --><!-- SEND DATA 'teacher_id' TO CONTROLLER -->
                         <!-- <input type='text' name='teacher_teacher_id' value='' placeholder='teacher_teacher_id'> -->
+                        <input name="teacher_id" value="3" style="display: none">
                         <div class="row">
                             <div class="col table table-bordered table-striped " ">
                                 <br>

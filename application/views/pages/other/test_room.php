@@ -102,6 +102,38 @@ $topic = "ผลจัดห้องสอบ(other)";
                             </tr>";
                         }
                         ?>
+                        <?php
+                            $rows = 10; // define number of rows
+                            $cols = 4;// define number of columns
+
+                            echo "<table border='1'>";
+
+                            for($tr=1;$tr<=$rows;$tr++){
+
+                                echo "<tr>";
+                                    for($td=1;$td<=$cols;$td++){
+                                        if($tr == 1 and $td <= 4)
+                                        {
+                                            if($td == 1)
+                                            {
+                                                echo "<td>"."name"."</td>";
+                                            }
+                                            else{
+                                                echo "<td>"."room".$td."</td>";
+                                            }
+                                            
+
+                                        }
+                                        else{
+                                            echo "<td>row: ".$tr." column: ".$td."</td>";
+                                        }
+                                        
+                                    }
+                                echo "</tr>";
+                            }
+
+                            echo "</table>";
+                            ?>
                     </table>
                     <!-- Body -->
                 </div>

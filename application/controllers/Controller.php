@@ -77,10 +77,153 @@ class Controller extends CI_Controller
 	}
 	public function control_room()
 	{
+
+		$this->load->view('pages/admin/control_room');
 		// $this->load->model('model');
 		// $data['show'] = $this->model->m_show_teacher();
 		// $this->load->view('db/db_user', $data);
-		$this->load->view('pages/admin/control_room');
+
+	}
+	public function control_room1()
+	{
+
+			$this->load->model('model');
+			$data_grp['show_grp'] = $this->model->m_show_group();
+			$data['show'] = array($data_grp['show_grp']);
+			
+			//  echo "<pre>";print_r($data_grp);
+			// foreach ($show_grp->result() as $row_com1) {
+			// 	array_push($comment1, $row_com1->comment1);
+				
+			// }
+			// foreach ($data_grp->result() as $row_com2) {
+			// 	array_push($comment2, $row_com2->comment2);
+				
+			// }
+			
+	
+			$num_of_room = $this->input->post('num_of_room');
+			$room = array();
+
+			for($i = 1;$i <= $num_of_room;$i++)
+			{
+				array_push($room, "Room$i");
+			}
+
+			$time_for_group = $this->input->post("time_for_group");
+			$start_time = $this->input->post("start_time");
+			$fin_time = $this->input->post("fin_time");
+			$time = array();
+			
+			if($time_for_group < 60)
+			{
+				$time_for_group = $time_for_group/100;
+			}
+			else{
+				$hours = $time_for_group/60;
+				$hours = floor($hours);
+				$min = ($time_for_group%60)/100;
+				$time_for_group = $hours+$min;
+
+			}
+			 
+			for($i=$start_time;$fin_time>$start_time;$i++)
+			{
+				
+				array_push($time, $start_time);
+				$start_time = $start_time+$time_for_group;
+				$len=strlen($start_time);
+				$check = ".";
+				$rest = substr($start_time, -1);
+				// echo $len,"    ";
+				// echo $start_time,"     ";
+
+				if($len == 3)
+				{
+					$rest = substr($start_time, -1);
+					if($rest >= 6)
+					{
+						$start_time = $start_time -0.60;
+						$start_time = $start_time +1;
+					}
+				}
+
+				if($len == 4)
+				{
+					$rest = substr($start_time, -2);
+					 
+					if(strpos($rest, $check) !== false){
+						$rest = substr($start_time, -1);
+						if($rest>= 6)
+						{
+							$start_time = $start_time -0.60;
+						$start_time = $start_time +1;
+						}
+					} 
+					else{
+						if($rest >= 6)
+					{
+						$start_time = $start_time -0.60;
+						$start_time = $start_time +1;
+					}
+					}
+					
+				}
+				if($len == 5)
+				{
+					$rest = substr($start_time, -2);
+					echo $rest;
+					if($rest >= 6)
+					{
+						$start_time = $start_time -0.60;
+						$start_time = $start_time +1;
+					}
+				}
+			
+				
+
+				
+	
+
+				
+			
+				// if( $test < 60)
+				// {
+					
+				// 	echo $start_time,"0";
+				// }
+				
+				//  if( $test >=60)
+				// {
+				// 	$hours = (($start_time[2]*10)+$start_time[3])/60;
+				// 	echo "H",$hours,"  ";
+				// 	$min = ((($start_time[2]*10)+$start_time[3])%60)/100;
+				// 	echo "M",$min,"  ";
+				// 	$start_time[0] = $start_time[0]+$hours;
+				// 	echo  $start_time[0] ;
+				// 	$start_time[2] = 0;
+				// 	echo  $start_time[2] ;
+				// 	$start_time[3] = 0;
+				// 	echo  $start_time[3] ,"   ";
+				// 	$start_time = $start_time + $min;
+				// 	echo $start_time,"0";
+
+
+				//  }
+				
+
+			}
+			
+			
+			$data['show'] = array($data_grp['show_grp'],$time,$room);
+			$this->load->view('pages/admin/commit_result', $data);
+			
+
+			
+
+			
+			
+			
 	}
 	public function commit_result()
 	{

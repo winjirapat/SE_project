@@ -65,42 +65,63 @@ $topic = "จัดห้องสอบ(admin)";
 				</div>
 				<div class="container-fluid well">
 					<!-- Body -->
-                    <div class="w3-row ">
+                    
+                    <form action="<?= base_url('Controller/control_room1') ?>" method = "post">
+                    <div class="w3-container ">
                         <div class="w3-third w3-container ">
                             <div class="input-group">
                                 <span class="input-group-addon w3-white">จำนวนห้อง</span>
-                                <input id="msg" type="text" class="form-control w3-light-gray" placeholder="3">
-                            </div>
-                        </div>
-                        <div class="w3-third w3-container">
-                            <div class="input-group">
-                                <span class="input-group-addon w3-white">เวลาเริ่ม</span>
-                                <input id="msg" type="text" class="form-control w3-light-gray" placeholder="9.00">
+                                <!-- <input name="num_of_room" type="text" class="form-control w3-light-gray" placeholder="3"> -->
+                                <select NAME="num_of_room" class="form-control w3-light-gray"> 
+                                <option value=2>2</option>
+                                <option value=3>3</option>
+                                
+
+                                </select>
+                                                    
                             </div>
                         </div>
                         <div class="w3-third w3-container">
                             <div class="input-group">
                                 <span class="input-group-addon w3-white">เวลาแต่ละกลุ่ม</span>
-                                <input id="msg" type="text" class="form-control w3-light-gray" placeholder="30 นาที">
+                                <input name="time_for_group" type="text" class="form-control w3-light-gray" placeholder="นาที เช่น 30">
+                            </div>
+                    </div>
+                    <br><br><br><br>
+                    <div class="w3-container ">
+                        </div>
+                        <div class="w3-third w3-container">
+                            <div class="input-group">
+                                <span class="input-group-addon w3-white">เวลาเริ่ม</span>
+                                <input name="start_time" type="text" class="form-control w3-light-gray" placeholder="9.00">
+                             
                             </div>
                         </div>
+                        <div class="w3-third w3-container">
+                            <div class="input-group">
+                                <span class="input-group-addon w3-white">เวลาสิ้นสุด</span>
+                                <input name="fin_time" type="text" class="form-control w3-light-gray" placeholder="16.00">
+                                <!-- <div class="w3-dropdown-hover">
+                                <button class="w3-button w3-black">Hover Over Me!</button>
+                                <div class="w3-dropdown-content w3-bar-block w3-border">
+                                <a href="#" class="w3-bar-item w3-button">2</a>
+                                <a href="#" class="w3-bar-item w3-button">3</a>
+                                
+                                </div>
+                            </div> -->
+                            
+           
+            
+                               
+                            </div> 
+                           
+                        </div>
                     </div><br> <br> <br>
-                    <div class="input-group">
-                        <label class="input-group-addon w3-white">อ.กาญจณา</label>
-
-                        <input type="text" class="w3-light-gray" placeholder="10.00-16.00" size="40">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon w3-white">อ.สายฟ้า</span>
-                        <input type="text" class=" w3-light-gray" placeholder="10.00-16.00" size="40">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon w3-white">อ.โก้</span>
-                        <input type="text" class=" w3-light-gray" placeholder="10.00-16.00" size="40">
-                    </div>
+                    
 
                     <br><br><br>
-                    <button class="button colora">ยืนยัน</button>
+                    <button class="button colora" value="confirm">ยืนยัน</button>
+                    </form>
                     <!--  Body -->
                 </div>
             </div>

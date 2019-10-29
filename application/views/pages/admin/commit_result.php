@@ -67,34 +67,128 @@ $topic = "ผลการเลือกกรรมการ(admin)";
 					<!-- Body -->
                     <?php
                     $show_grp = $show[0];
-                    $show_tch = $show[1];
+                    $time = $show[1];
+                    $room = $show[2];
+                    $times = array();
+                    $rooms = array();
                     $name_projects = array();
-                    $fnames = array();
-                    foreach ($show_grp->result() as $row_grp) {
+                    $comment1 = array();
+                    $comment2 = array();
+                    
+                    foreach ($show_grp->result() as $row_grp) {//get data and push in array
                         array_push($name_projects, $row_grp->name_project);
                     }
-                    foreach ($show_tch->result() as $row_tch) {
-                        array_push($fnames, $row_tch->fname);
+                    foreach ($show_grp->result() as $row_com1) {
+                        array_push($comment1, $row_com1->comment1);
+                        
                     }
+                    foreach ($show_grp->result() as $row_com2) {
+                        array_push($comment2, $row_com2->comment2);
+                        
+                    }
+                    for($i = 0; $i < sizeof($time); $i++) {
+                        array_push($times, $time[$i]);
+                    }
+                    for($i = 0; $i < sizeof($room); $i++) {
+                        array_push($rooms, $room[$i]);
+                    }
+                    
                     ?>
+                    
                     <table class="table table-bordered table-striped">
                         <tr>
-                            <th>กลุ่ม</th>
-                            <th>กรรมการ</th>
-                            <th>กรรมการ</th>
-                        </tr>
-                        <?php
-                        for ($i = 0; $i < sizeof($name_projects); $i++) {
-                            $c = $i;
-                            if ($c >= sizeof($fnames) - 2) {
-                                $c = sizeof($fnames) - (sizeof($fnames) - 2);
+                              <?php //create colum
+                                echo "<tr>";
+                                echo "<th>"."เวลา"."</th>";
+                               for($i = 0; $i < sizeof($rooms); $i++) {
+                               
+                               echo "<td>$room[$i]</td>";
                             }
-                            echo "<tr>
-                            <td>" . $name_projects[$i] . "</td>
-                            <td>" . $fnames[$c] . "</td>
-                            <td>" . $fnames[$c + 1] . "</td>
-                        </tr>";
-                        }
+                            echo "</tr>";
+
+                            ?>
+
+                        </tr>
+
+                        
+
+                        <?php //create row
+                        $count = 0;
+                        for ($i = 0; $i < sizeof($name_projects)/sizeof($rooms); $i++) {
+                            $checkcomment1 = array();
+                            $checkcomment2 = array();
+                            $check = true;
+
+                          
+
+                          
+                            echo "<tr>";
+                            echo "<td>$times[$i]</td>";
+                            while($count != (sizeof($rooms)*($i+1)))
+                            {
+                                
+                                
+                                if($count >= sizeof($name_projects))//out of range
+                                {
+                                    break;
+                                }
+
+                                // if($check)
+                                // {
+                                //     break;
+                                // }
+                                if($count < sizeof($name_projects))//create row data
+                                {  
+                                  
+                                    $check1 = $comment1[$count];
+                                    $check2 = $comment2[$count];
+                                    array_push($checkcomment1, $check1);
+                                    array_push($checkcomment2, $check2);
+                                  
+                                   
+                                    if(sizeof($checkcomment1) > 1)
+                                    {  
+                                       for($j = 0;$j < (sizeof($rooms))-1;$j++) //check comment
+                                    {
+
+                                        if($check1 == $checkcomment1[$j] )
+                                        {
+                                          echo "<td><input list=browsers></td>";    
+                                          $check = false;
+                                        }
+                                        elseif($check1 == $checkcomment2[$j] )
+                                        {
+                                            echo "<td><input list=browsers></td>";           
+                                            $check = false;
+
+                                        }
+                                       elseif($check2 == $checkcomment2[$j] )
+                                        {
+                                            echo "<td><input list=browsers></td>";
+                                            $check = false;
+                                        }
+                                        elseif($check2 == $checkcomment1[$j] )
+                                        {
+                                            echo "<td><input list=browsers></td>";
+                                            $check = false;
+                                        }
+                                         elseif($check)
+                                         {
+                                             echo "<td>$name_projects[$count] $comment1[$count] $comment2[$count]</td>";  
+                                         }
+                                    }
+                                   
+                                    }
+                                    else{
+                                    echo "<td>$name_projects[$count] $comment1[$count] $comment2[$count]</td>";  
+                                  }
+                                $count = $count+1;    
+                               
+                                }
+                                
+                            }
+                       }
+                        echo "</tr>";
                         ?>
                     </table>
                     <button class="btn btn-success">Accept</button>
